@@ -30,6 +30,7 @@ Tutor: Nicola Rennie ([n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk
 
 * Referencing
   * Inline code and referencing results
+  * Results references in figure captions
   * Figure and table references
   * Cross references
   * Citations
@@ -45,6 +46,8 @@ Tutor: Nicola Rennie ([n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk
   * Nice features
   * Tricky things
   * Quarto and R versions
+  * {targets}
+  * Converting from R Markdown
 
 ## Prerequisites
 
