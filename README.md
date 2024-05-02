@@ -61,6 +61,8 @@ Tutor: Nicola Rennie ([n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk
 
 * You should have a working installation of R.
 * You do **not** need to be experienced in R for this workshop. Code examples will be provided.
+* Packages used: 
+  * {psych} (for `bfi` data only). This can be read in with `bfi <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/psych/bfi.csv")` instead.
 
 ### Other
 
