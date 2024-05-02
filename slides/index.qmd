@@ -5,7 +5,7 @@ author: "Dr Nicola Rennie"
 format:
   LUstyle-revealjs:
     self-contained: true
-    footer: "{{< fa envelope >}} [n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk) {{< fa globe >}} [nrennie.rbind.io](https://nrennie.rbind.io/) {{< fa brands linkedin >}} [nicola-rennie](https://www.linkedin.com/in/nicola-rennie/)<br>[nrennie.rbind.io/talks/rladies-edinburgh-quarto](https://nrennie.rbind.io/talks/rladies-edinburgh-quarto/)"
+    footer: "{{< fa envelope >}} [n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk) {{< fa globe >}} [nrennie.rbind.io](https://nrennie.rbind.io/) {{< fa brands linkedin >}} [nicola-rennie](https://www.linkedin.com/in/nicola-rennie/)<br>[nrennie.rbind.io/talks/LU-psychology-quarto](https://nrennie.rbind.io/LU-psychology-quarto/)"
 ---
 
 # Welcome!
@@ -267,66 +267,17 @@ Code visibility options:
 
 Figure options:
 
-```{r}
-#| eval: true
-#| echo: false
-library(ggplot2)
-theme_set(theme_grey(base_size = 40) +
-  theme(
-    legend.position = "none",
-    axis.title = element_blank(),
-    plot.background = element_rect(colour = "#ffffff", fill = "#ffffff"),
-    panel.background = element_rect(colour = "#ffffff", fill = "#ffffff")
-  ))
-```
-
-```{r}
-#| echo: false
-#| eval: true
-lemurs <- read.csv("lemurs_small.csv")
-lemurs$name <- stringr::str_wrap(lemurs$name, width = 12)
-library(ggplot2)
-```
-
-```{r}
-#| echo: fenced
-#| fig-alt: "Bar chart showing the number of lemurs for three different species"
-#| fig-height: 7
-#| fig-width: 10
-#| fig-align: center
-#| output-location: slide
-g <- ggplot(
-  data = lemurs,
-  aes(x = name, y = n, fill = name)
-) +
-  geom_col()
-g
-```
 
 ## Code block options
 
 Output location: 
 
-```{r}
-#| echo: fenced
-#| output-location: column
-g
-```
 
 ## Code block options
 
 Highlight code:
 
-```{r}
-#| echo: fenced
-#| eval: false
-#| code-line-numbers: "3"
-ggplot(
-  data = lemurs,
-  aes(x = name, y = n, fill = name)
-) +
-  geom_col()
-```
+
 
 
 ## Global code block options
@@ -363,11 +314,7 @@ execute:
 
 We can also include code inline, rather than as a separate chunk.
 
-::: {.callout-note appearance="minimal"}
-The total number of lemurs is `` `r "\u0060r sum(lemurs$n)\u0060"` ``.
-:::
-
-The total number of lemurs is `r sum(lemurs$n)`.
+check r-ladies for syntax
 
 # These are a few of my favourite things (about Quarto) {background-color="#D9DBDB"}
 
