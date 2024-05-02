@@ -1,2 +1,2 @@
-pkgs <- c("tidyverse")
+pkgs <- c("psych")
 install.packages(pkgs)
