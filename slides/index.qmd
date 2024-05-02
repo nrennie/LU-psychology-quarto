@@ -172,11 +172,14 @@ Content
 
 ## Exercise 1
 
-Open `exercises/exercise_01.md` for prompts.
+Open `exercises/Exercise 1/README.md` for prompts.
 
 * Create a new Quarto HTML document.
 * Fill in the YAML options with a title and author.
 * Render your document.
+* Change the format to `docx`.
+* Re-render your document.
+* What about PDF?
 
 ```{r}
 #| label: ex-1-timer
@@ -196,7 +199,7 @@ countdown::countdown(
 
 . . . 
 
-See `exercise_solutions/exercise_solutions_01.qmd` for full solution.
+See `exercise_solutions/Exercise 1/exercise_01.qmd` for full solution.
 
 # Document content {background-color="#D9DBDB"}
 
