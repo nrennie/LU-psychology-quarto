@@ -6,6 +6,9 @@ format:
   LUstyle-revealjs:
     self-contained: true
     footer: "{{< fa envelope >}} [n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk) {{< fa globe >}} [nrennie.rbind.io](https://nrennie.rbind.io/) {{< fa brands linkedin >}} [nicola-rennie](https://www.linkedin.com/in/nicola-rennie/)<br>[nrennie.rbind.io/LU-psychology-quarto](https://nrennie.rbind.io/LU-psychology-quarto/)"
+execute: 
+  eval: true
+  echo: fenced
 ---
 
 # Welcome!
@@ -183,6 +186,7 @@ Open `exercises/Exercise 1/README.md` for prompts.
 
 ```{r}
 #| label: ex-1-timer
+#| echo: false
 countdown::countdown(
   minutes = 10,
   color_border = "#b20e10",
@@ -197,13 +201,17 @@ countdown::countdown(
 )
 ```
 
-. . . 
+::: {.fragment} 
 
-See `exercise_solutions/Exercise 1/exercise_01.qmd` for full solution.
+See `exercise_solutions/Exercise 1` for full solutions.
+
+:::
 
 # Document content {background-color="#D9DBDB"}
 
 ## Markdown syntax
+
+## Sections
 
 * Lists
 * 
@@ -219,14 +227,13 @@ See `exercise_solutions/Exercise 1/exercise_01.qmd` for full solution.
 
 ## Exercise 2
 
-Open `exercises/exercise_02.md` for prompts.
+Open `exercises/Exercise 2/README.md` for prompts.
 
-* Create a new Quarto HTML document.
-* Fill in the YAML options with a title and author.
-* Render your document.
+* 
 
 ```{r}
 #| label: ex-2-timer
+#| echo: false
 countdown::countdown(
   minutes = 10,
   color_border = "#b20e10",
@@ -241,18 +248,45 @@ countdown::countdown(
 )
 ```
 
-. . . 
+::: {.fragment} 
 
-See `exercise_solutions/exercise_solutions_02.qmd` for full solution.
+See `exercise_solutions/Exercise 2` for full solutions.
 
+:::
 
 # Code blocks {background-color="#D9DBDB"}
 
+## Code blocks
+
+* Code blocks are the main way of including executable R code in a document. 
+
+* Code blocks always start with three backticks, followed by the an ` r` in curly brakcets.
+
+```{r}
+2 + 2
+```
+
+::: {.callout-tip}
+
+Add a new code block using the **Ctrl + Shift + I** keyboard shortcut.
+
+:::
+
 ## Code block options
 
-what are they, eval 
+Code block options can control:
 
-## Quarto vs R Markdown
+::: {.incremental}
+
+* whether your code is executed
+* whether your code is displayed
+* if warnings and errors are displayed
+* how figures are presented
+* how tables are presented
+
+:::
+
+## Code block options
 
 ```{r}
 #| echo: fenced
@@ -277,6 +311,7 @@ Comparing to R Markdown:
 . . . 
 
 <br>
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -315,29 +350,14 @@ Code visibility options:
 
 ````
 
-## Code block options
-
-Figure options:
-
-
-## Code block options
-
-Output location: 
-
-
-## Code block options
-
-Highlight code:
-
-## Code tables
-
-
 ## Global code block options
+
+::: {.fragment}
 
 ::: columns
 ::: {.column}
 
-RMarkdown
+**R Markdown**
 
 ````
 ```{{r}}
@@ -346,14 +366,14 @@ knitr::opts_chunk$set(echo = FALSE)
 ````
 
 :::
-::: {.column}
+::: {.column .fragment}
 
-Quarto
+**Quarto**
 
 ``` yaml
 ---
 title: "A very cool title"
-format: html
+format: docx
 execute:
   echo: false
 ---
@@ -362,9 +382,73 @@ execute:
 :::
 :::
 
+:::
+
+## Code block options: label
+
+```{r}
+#| label: load-data
+library(psych)
+data(bfi)
+```
+
+::: {.callout-tip}
+
+Separate label words using a `-` rather than a `_`.
+
+:::
+
+## Code block options: figures
+
+Figure options:
+
+```{r}
+#| label: age-hist
+#| fig-align: center
+#| fig-width: 6
+#| fig-asp: 0.4
+#| fig-cap: "A histogram of participant age"
+#| output-location: slide
+hist(bfi$age, xlab = "Age", main = "")
+```
+
+## Code block options: tables
+
+There are lots of options for creating tables in R:
+
+* {knitr} - basic
+* {kableExtra} - adds to `kable()` in {knitr}
+* {gt} - more complex "great tables"
+* {gtsummary} - creates summary tables using {gt}
+* {flextable} - good for Word documents
+* {tinytable} - very lightweight
+
+## Code block options: tables
+
+Prepare the data:
+
+```{r}
+data("sat.act")
+sat_summary <- aggregate(
+  cbind(SATV, SATQ) ~ education,
+  FUN = mean,
+  data = sat.act
+)
+```
+
+## Code block options: tables
+
+Make a table:
+
+```{r}
+#| tbl-cap: "Mean scores by education level"
+library(tinytable)
+tt(sat_summary)
+```
+
 ## Exercise 3
 
-Open `exercises/exercise_03.md` for prompts.
+Open `exercises/Exercise 3/README.md` for prompts.
 
 * Create a new Quarto HTML document.
 * Fill in the YAML options with a title and author.
@@ -372,6 +456,7 @@ Open `exercises/exercise_03.md` for prompts.
 
 ```{r}
 #| label: ex-3-timer
+#| echo: false
 countdown::countdown(
   minutes = 10,
   color_border = "#b20e10",
@@ -386,26 +471,78 @@ countdown::countdown(
 )
 ```
 
-. . . 
+::: {.fragment} 
 
-See `exercise_solutions/exercise_solutions_03.qmd` for full solution.
+See `exercise_solutions/Exercise 3` for full solutions.
 
+:::
 
 # Referencing in Quarto {background-color="#D9DBDB"}
 
-
 ## Referencing results in text
-
-Inline code
 
 We can also include code inline, rather than as a separate chunk.
 
-check r-ladies for syntax
+::: {.callout-note appearance="minimal"}
+The total number of participants is `` `r "\u0060r nrow(bfi)\u0060"` ``.
+:::
+
+The total number of participants is `r nrow(bfi)`.
+
+## Referencing results in text
+
+For more complex numbers, you can calculate or extract results from a code block.
+
+```{r}
+#| echo: fenced
+# Calculate median age of females
+# Males = 1, Females = 2
+age_f <- median(bfi[bfi$gender == 2, "age"])
+```
+
+::: {.fragment}
+
+::: {.callout-note appearance="minimal"}
+The median age of females in the study is `` `r "\u0060r age_f\u0060"` ``.
+:::
+
+The median age of females in the study is `r age_f`.
+
+:::
 
 ## Figure references
 
 external images
-plots
+
+## Figure references
+
+Earlier we made a histogram of age:
+
+```{r}
+#| label: age-histogram
+#| fig-align: center
+#| fig-width: 6
+#| fig-asp: 0.4
+#| fig-cap: "A histogram of participant age"
+hist(bfi$age, xlab = "Age", main = "")
+```
+
+## Figure references
+
+To make this a **Figure** reference, we need to prefix the label with `fig-`:
+
+```{r}
+#| label: fig-age-histogram
+#| fig-align: center
+#| fig-width: 6
+#| fig-asp: 0.4
+#| fig-cap: "A histogram of participant age"
+hist(bfi$age, xlab = "Age", main = "")
+```
+
+Then:
+
+A histogram of participant ages is shown in @fig-age-histogram.
 
 ## Table references
 
@@ -415,17 +552,46 @@ references within a document
 
 ## Citations
 
+## Option 1: using .bib files
+
+::: {.callout-tip}
+
+Find a citation for the R packages you using by running `citation("pkgname")` e.g. `citation("psych")`
+
+:::
+
+## Create a .bib file
+
+```bib
+@Manual{psych,
+  title = {psych: Procedures for Psychological, Psychometric, and Personality Research},
+  author = {{William Revelle}},
+  organization = {Northwestern University},
+  address = {Evanston, Illinois},
+  year = {2024},
+  note = {R package version 2.4.1},
+  url = {https://CRAN.R-project.org/package=psych},
+}
+```
+
+## Option 2: Zotero
+
+## Other citation options
 
 ## Exercise 4
 
-Open `exercises/exercise_04.md` for prompts.
+Open `exercises/Exercise 4/README.md` for prompts.
 
-* Create a new Quarto HTML document.
-* Fill in the YAML options with a title and author.
-* Render your document.
+* Update (or add!) a label to the figure code block you created earlier.
+* Add a reference to this in the text.
+* Add section references, and cross reference to this section somewhere else in the document.
+* Add a citation by either:
+  * creating a .bib file and listing it in the YAML.
+  * using the Zotero integration
 
 ```{r}
 #| label: ex-4-timer
+#| echo: false
 countdown::countdown(
   minutes = 10,
   color_border = "#b20e10",
@@ -440,12 +606,32 @@ countdown::countdown(
 )
 ```
 
-. . . 
+::: {.fragment} 
 
-See `exercise_solutions/exercise_solutions_04.qmd` for full solution.
+See `exercise_solutions/Exercise 4` for full solutions.
 
+:::
 
 # Formatting Quarto documents {background-color="#D9DBDB"}
+
+## Writing LaTeX
+
+````
+---
+title: "A very cool title"
+format: html
+---
+
+\begin{equation}
+\hat{e}_i = Y_i - \hat{Y}_i
+\end{equation}
+
+````
+. . .
+
+\begin{equation}
+\hat{e}_i = Y_i - \hat{Y}_i
+\end{equation}
 
 ## extensions
 
@@ -459,7 +645,7 @@ keep-tex, word
 
 ## Exercise 5
 
-Open `exercises/exercise_05.md` for prompts.
+Open `exercises/Exercise 5/README.md` for prompts.
 
 * Create a new Quarto HTML document.
 * Fill in the YAML options with a title and author.
@@ -467,6 +653,7 @@ Open `exercises/exercise_05.md` for prompts.
 
 ```{r}
 #| label: ex-5-timer
+#| echo: false
 countdown::countdown(
   minutes = 10,
   color_border = "#b20e10",
@@ -481,10 +668,11 @@ countdown::countdown(
 )
 ```
 
-. . . 
+::: {.fragment} 
 
-See `exercise_solutions/exercise_solutions_05.qmd` for full solution.
+See `exercise_solutions/Exercise 5` for full solutions.
 
+:::
 
 # Collaborating {background-color="#D9DBDB"}
 
@@ -689,6 +877,11 @@ purrr::walk(2018:2022, ~ quarto::quarto_render(
 
 * Slides: [nrennie.github.io/LU-psychology-quarto](https://nrennie.github.io/LU-psychology-quarto)
 
+## Feedback
+
+<br>
+
+Feedback form: [forms.gle/qgsv36RxPZP1Ty7H8](https://forms.gle/qgsv36RxPZP1Ty7H8)
 
 ## 
 
