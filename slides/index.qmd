@@ -386,11 +386,22 @@ execute:
 
 ## Code block options: label
 
+* help to find where errors exist (unnumbered code block 39, Ctrl + F)
+* no duplicate labels
+* labels useful for other things (we'll see this afternoon)
+
 ```{r}
 #| label: load-data
 library(psych)
 data(bfi)
 ```
+
+```{r}
+#| label: load-data-csv
+bfi <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/psych/bfi.csv")
+
+```
+
 
 ::: {.callout-tip}
 
@@ -450,10 +461,7 @@ tt(sat_summary)
 
 Open `exercises/Exercise 3/README.md` for prompts.
 
-* Create a new Quarto HTML document.
-* Fill in the YAML options with a title and author.
-* Render your document.
-
+* 
 ```{r}
 #| label: ex-3-timer
 #| echo: false
@@ -647,9 +655,7 @@ keep-tex, word
 
 Open `exercises/Exercise 5/README.md` for prompts.
 
-* Create a new Quarto HTML document.
-* Fill in the YAML options with a title and author.
-* Render your document.
+* 
 
 ```{r}
 #| label: ex-5-timer
