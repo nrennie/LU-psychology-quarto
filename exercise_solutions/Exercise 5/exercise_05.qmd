@@ -1,4 +1,74 @@
+---
+title: "My Document"
+shorttitle: "My Paper's Title"
+author:
+  - name: Nicola Rennie
+    corresponding: true
+    orcid: 0000-0003-4797-557X
+    email: n.rennie@lancaster.ac.uk
+    affiliations:
+      - name: Lancaster University
+        department: Lancaster Medical School
+        address: Health Innovation Campus
+        city: Lancaster
+        region: Lancashire
+        postal-code: LA1 4YW
+abstract: "This is my abstract."
+keywords: [keyword1, keyword2]
+author-note:
+  disclosures:
+    conflict of interest: The author has no conflict of interest to declare.
+bibliography: references.bib
+execute: 
+  echo: false
+---
 
-# Load R packages ---------------------------------------------------------
+# 25 Personality items representing 5 factors
 
+Data exploration will be discussed in @sec-data-exp.
+
+## Description
+
+25 personality self report items taken from the International Personality Item Pool ([ipip.ori.org](https://ipip.ori.org/)) were included as part of the **Synthetic Aperture Personality Assessment (SAPA)** web based personality assessment project. The data from 2800 subjects are included here as a demonstration set for scale construction, factor analysis, and Item Response Theory analysis.
+
+Three additional demographic variables are also included:
+
+* sex
+* education
+* age
+
+![Eggs experiencing a variety of emotions](eggs.jpg){fig-align="center"}
+
+## Data exploration {#sec-data-exp}
+
+Here we explore `bfi` data in the {psych} package [@psych].
+
+```{r}
+#| label: load-data
+library(psych)
+data(bfi)
+```
+
+We see a bar chart of the gender and education level of participants below in @fig-gen-edu-barplot.
+
+```{r}
+#| label: fig-gen-edu-barplot
+#| fig-width: 5
+#| fig-height: 5
+#| fig-cap: "Education and gender (Males = 1, Females = 2) of participants."
+# Add a bar plot of gender and education
+barplot(
+  table(bfi$gender, bfi$education),
+  beside = TRUE,
+  legend = TRUE
+)
+```
+
+A table of agreeableness scores for the first 10 participants is shown below:
+
+```{r}
+#| label: sample-table
+library(tinytable)
+tt(head(bfi[, 1:5], 10))
+```
 
