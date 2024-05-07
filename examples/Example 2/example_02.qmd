@@ -1,4 +1,37 @@
+---
+title: "My Document"
+author: "Nicola Rennie"
+format: html
+---
 
-# Load R packages ---------------------------------------------------------
+# Level 1 Heading
 
+## Level 2 Heading
 
+We can write lists in markdown. For example, the top 3 best animals:
+
+-   lemurs
+-   dogs
+-   hedgehogs
+
+Numbered lists are made easier in markdown:
+
+1.  lemurs
+2.  dogs
+3.  hedgehogs
+
+You can make text *italic* or **bold**.
+
+We can add images:
+
+![](lemurs.jpg){fig-align="center" width="50%"}
+
+and tables:
+
+| Animal   | Score |
+|----------|-------|
+| Lemur    | 10    |
+| Dog      | 9     |
+| Hedgehog | 8     |
+
+: Rating of animals
