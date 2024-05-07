@@ -229,7 +229,13 @@ See `exercise_solutions/Exercise 1` for full solutions.
 
 Open `exercises/Exercise 2/README.md` for prompts.
 
-* 
+* Create level 1 and level 2 section headings in your document.
+* Add some text into your document. If you don't want to write your own, there is some sample text in `sample-text.qmd`.
+* Format the text to include a list, and bold or italic text.
+* Add a link to the International Personality Item Pool: [https://ipip.ori.org/](https://ipip.ori.org/).
+* Include an image in your document. Find your own or use `eggs.jpg`.
+* Add a caption to the image and center align it.
+* Render your document - check the image appears and the link works.
 
 ```{r}
 #| label: ex-2-timer
@@ -260,7 +266,7 @@ See `exercise_solutions/Exercise 2` for full solutions.
 
 * Code blocks are the main way of including executable R code in a document. 
 
-* Code blocks always start with three backticks, followed by the an ` r` in curly brakcets.
+* Code blocks always start with three backticks, followed by the an ` r` in curly brackets.
 
 ```{r}
 2 + 2
@@ -417,7 +423,7 @@ Figure options:
 #| label: age-hist
 #| fig-align: center
 #| fig-width: 6
-#| fig-asp: 0.4
+#| fig-asp: 0.9
 #| fig-cap: "A histogram of participant age"
 #| output-location: slide
 hist(bfi$age, xlab = "Age", main = "")
@@ -453,6 +459,7 @@ Make a table:
 
 ```{r}
 #| tbl-cap: "Mean scores by education level"
+#| output-location: slide
 library(tinytable)
 tt(sat_summary)
 ```
@@ -461,7 +468,12 @@ tt(sat_summary)
 
 Open `exercises/Exercise 3/README.md` for prompts.
 
-* 
+* Add a code block that loads the {psych} package and a dataset from the package e.g. `bfi`. 
+  * Alternatively, use some other data that you have/like.
+* Add another code block that makes a plot e.g. a bar chart of participants' education categories, `education`. You can use either base R or {ggplot2} (or another package!).
+* Change the code block options and see what happens!
+* Add a third code block that creates a table showing the first 10 rows and first 5 columns of your data. Hint: `head(bfi[, 1:5], 10)`. Use any table package you prefer.
+
 ```{r}
 #| label: ex-3-timer
 #| echo: false
@@ -484,6 +496,8 @@ countdown::countdown(
 See `exercise_solutions/Exercise 3` for full solutions.
 
 :::
+
+# Break! <br> Back at 13:30 {background-color="#D9DBDB"}
 
 # Referencing in Quarto {background-color="#D9DBDB"}
 
