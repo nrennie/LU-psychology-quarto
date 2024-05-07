@@ -325,6 +325,12 @@ Add a new code block using the **Ctrl + Shift + I** keyboard shortcut.
 
 :::
 
+## Code 
+
+- paths are relative
+- run code blocks one at a time
+- think about environments
+
 ## Code block options
 
 Code block options can control:
@@ -452,7 +458,6 @@ data(bfi)
 ```{r}
 #| label: load-data-csv
 bfi <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/psych/bfi.csv")
-
 ```
 
 
