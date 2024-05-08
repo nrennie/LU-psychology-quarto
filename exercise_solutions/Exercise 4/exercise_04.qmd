@@ -3,6 +3,7 @@ title: "My Document"
 author: "Nicola Rennie"
 format: html
 bibliography: references.bib
+number-sections: true
 execute: 
   echo: false
 ---
