@@ -18,9 +18,9 @@ Data exploration will be discussed in @sec-data-exp.
 
 Three additional demographic variables are also included:
 
-* sex
-* education
-* age
+-   sex
+-   education
+-   age
 
 ![Eggs experiencing a variety of emotions](eggs.jpg){fig-align="center"}
 
@@ -56,4 +56,3 @@ A table of agreeableness scores for the first 10 participants is shown below:
 library(tinytable)
 tt(head(bfi[, 1:5], 10))
 ```
-
