@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.pdf
+*.html
+*_files/
+script.qmd
+*.docx
+examples_blank/
