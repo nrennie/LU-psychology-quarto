@@ -3,9 +3,11 @@ title: "Introduction to Quarto for Research"
 subtitle: "<small>9 May 2024</small>"
 author: "Dr Nicola Rennie"
 bibliography: references.bib
+suppress-bibliography: true
 format:
   LUstyle-revealjs:
     self-contained: true
+    auto-stretch: false
     footer: "{{< fa envelope >}} [n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk) {{< fa globe >}} [nrennie.rbind.io](https://nrennie.rbind.io/) {{< fa brands linkedin >}} [nicola-rennie](https://www.linkedin.com/in/nicola-rennie/)<br>[nrennie.rbind.io/LU-psychology-quarto](https://nrennie.rbind.io/LU-psychology-quarto/)"
 execute: 
   eval: true
@@ -259,16 +261,29 @@ See `exercise_solutions/Exercise 1` for full solutions.
 
 In Quarto, you can include many things that aren't code:
 
+::: columns
+
+::: {.column}
+
 * Text
 * Sections
 * Lists
 * Images
 * Tables
+
+:::
+
+::: {.column}
+
 * Videos
 * Equations
 * Citations
 * Raw HTML/LaTeX code
 * ...
+
+:::
+
+:::
 
 These are primarily written using Markdown syntax. 
 
@@ -308,7 +323,7 @@ or
 - Item 2
 - Item 3
 ```
-give:
+gives:
 
 * Item 1
 * Item 2
@@ -443,6 +458,8 @@ You can create simple tables with Markdown syntax:
 :::
 
 :::
+
+<br>
 
 ::: {.fragment}
 
@@ -822,8 +839,6 @@ See `exercise_solutions/Exercise 3` for full solutions.
 
 :::
 
-# Break! <br> Back at 13:30 {background-color="#D9DBDB"}
-
 # Referencing in Quarto {background-color="#D9DBDB"}
 
 ## Referencing results in text
@@ -913,9 +928,7 @@ This is basically the pattern of cross-referencing throughout Quarto:
 
 We can add a cross-reference to a different section of our manuscript by adding a reference label that has a `sec-` prefix:
 
-```md
-## Exploratory data analysis {#sec-eda}
-```
+`## Exploratory data analysis {#sec-eda}`
 
 <br>
 
@@ -1067,11 +1080,11 @@ To refer to a citation, use `@` and the citation ID:
 
 ... as described in `@psych.`
 
-<br>
-
 which gives:
 
 ... as described in @psych.
+
+<br>
 
 ::: {.fragment}
 
@@ -1099,7 +1112,7 @@ Adding citations is one task where the Visual Editor in RStudio can be really he
 
 Click **Insert** --> **Citation**:
 
-![](images/citations.png){fig-align="center" width="80%"}
+![](images/citations.png){fig-align="center" width="60%"}
 
 ## Live demo!
 
@@ -1272,7 +1285,7 @@ Extensions aren't just used to change document styling. There are also extension
 
 ::: {.column}
 
-Submitting to the Journal of Statistical Software:
+Submitting to the JSS:
 
 ``` yaml
 ---
@@ -1307,8 +1320,7 @@ format:
 ## Installing Quarto extensions
 
 * Quarto extensions can be shared in different ways.
-* The most common way is via GitHub.
-* This is where you'll find 
+* The most common way is via GitHub. This is where you'll find the journal templates we looked at.
 * Two options for installing from GitHub:
   * From the command line
   * Using the {quarto} R package
@@ -1485,7 +1497,7 @@ title: "My manuscript"
 
 ::: {.column}
 
-![](images/gh.png){fig-align="center"}
+![](images/gh.png){fig-align="center" width="70%"}
 
 :::
 
@@ -1511,7 +1523,7 @@ See [claudiozandonella.github.io/trackdown](https://claudiozandonella.github.io/
 
 ## Multiple authors: it's a known problem
 
-![](images/gh-issue.png){fig-align="center" width="80%"}
+![](images/gh-issue.png){fig-align="center" width="60%"}
 
 GitHub discussion: [github.com/quarto-dev/quarto-cli/discussions/405](https://github.com/quarto-dev/quarto-cli/discussions/405)
 
@@ -1525,7 +1537,7 @@ When collaborating with other people, it's useful (sometimes crucial) that you a
 
 ## Tricky things: long computations
 
-**Problem:** you have R code that takes a long time to run, and you don't want to re-run it every time you re-render the document:
+**Problem:** you have R code that takes a long time to run, and you don't want to re-run it every time you re-render the document.
 
 ::: {.fragment}
 
@@ -1535,13 +1547,18 @@ When collaborating with other people, it's useful (sometimes crucial) that you a
 
 * `freeze: true`: in project, state that computational documents should never be re-rendered during a global project render, or alternatively only be re-rendered when their source file changes.
 
+:::
+
+## Tricky things: long computations
+
+**Problem:** you have R code that takes a long time to run, and you don't want to re-run it every time you re-render the document.
+
+**Solutions**:
+
 * {targets}: a Make-like pipeline tool for statistics and data science in R
   * skips costly runtime for tasks that are already up to date
   * run computations upstream before the .qmd document
   * the .qmd is the final "target"
-
-:::
-
 
 # Discussion {background-color="#D9DBDB"}
 
@@ -1581,6 +1598,7 @@ graph G {
 ```{dot}
 //| fig-align: center
 //| fig-height: 5
+//| echo: false
 graph G {
   bgcolor="#ffffff"
   qmd -- Knitr;
