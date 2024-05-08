@@ -2,6 +2,7 @@
 title: "Introduction to Quarto for Research"
 subtitle: "<small>9 May 2024</small>"
 author: "Dr Nicola Rennie"
+bibliography: references.bib
 format:
   LUstyle-revealjs:
     self-contained: true
@@ -40,7 +41,7 @@ Organiser of R-Ladies Lancaster, and part of R-Ladies Global team.
 
 ## What to expect during this workshop
 
-The workshop will run for *2 hours* this morning and *2 hours* this afternoon.
+The workshop will run for *2.5 hours* this morning and *2.5 hours* this afternoon.
 
 * Combines slides, live coding examples, quiz questions, and exercises for you to participate in.
 
@@ -93,16 +94,15 @@ Quarto is an open-source scientific and technical publishing system [that allows
 
 ## Why use Quarto? Why use R?
 
-* Transparency
+* More journals require code to be submitted (for transparency and reproducibility). Keeping the code with the paper makes this easier.
 
-* More journal want code.
+* Copying and pasting is tedious (and a great source of accidental errors).
 
-* Keeping the code with the paper...
+* If you fix an error in code or data, the results and figures in the paper update automatically.
 
-* Copying and pasting is tedious (and a great source of accidental errors)
+* Easy to share publicly. 
 
-## Why is Quarto good for reproducible research?
-
+* Open source so anyone can use it.
 
 ## What about R Markdown?
 
@@ -124,16 +124,25 @@ R Markdown isn't going anywhere but...
 
 ## Quarto in RStudio
 
-* yaml prompts
-* render button
-* visual editor
+::: columns
 
-## Predictive YAML (and code block options)
+::: {.column}
 
-<p style="text-align:center;">
-<img src="images/yaml.gif" alt="Gif of predictive yaml in a quarto document" width="50%">
-</p>
+**Source editor**
 
+![](images/source.png){fig-align="center" width="70%"}
+
+:::
+
+::: {.column}
+
+**Visual editor**
+
+![](images/visual.png){fig-align="center" width="70%"}
+
+:::
+
+:::
 
 ## Rendering a document
 
@@ -246,21 +255,241 @@ See `exercise_solutions/Exercise 1` for full solutions.
 
 # Document content {background-color="#D9DBDB"}
 
+## Document content
+
+In Quarto, you can include many things that aren't code:
+
+* Text
+* Sections
+* Lists
+* Images
+* Tables
+* Videos
+* Equations
+* Citations
+* Raw HTML/LaTeX code
+* ...
+
+These are primarily written using Markdown syntax. 
+
 ## Markdown syntax
+
+* You don't need special software to read it.
+
+* Separates out the content and structure from the document styling.
+
+* Focus on the content not the way it looks.
 
 ## Sections
 
-* Lists
-* 
+Sections are added to a document using different numbers of `#`:
+
+* `#` creates a Level 1 heading (section)
+
+* `##` creates a Level 2 heading (subsection)
+
+* `###` creates a Level 3 heading (sub-subsection)
+
+* ...
+
+## Lists 
+
+Lists can be created using either `*` or `-`:
+
+```md
+* Item 1
+* Item 2
+* Item 3
+```
+or
+
+```md
+- Item 1
+- Item 2
+- Item 3
+```
+give:
+
+* Item 1
+* Item 2
+* Item 3
+
+## Numbered lists
+
+Works but isn't great:
+
+```md
+1. Item 1
+2. Item 2
+3. Item 3
+```
+<br>
+
+::: {.fragment}
+
+Much nicer:
+
+```md
+1. Item 1
+1. Item 2
+1. Item 3
+```
+
+gives:
+
+1. Item 1
+1. Item 2
+1. Item 3
+
+:::
+
+## Links
+
+Add a link using square brackets and round brackets:
+
+* the text to appear in square brackets
+* followed by the URL in round brackets
+
+A link to the `[Quarto documentation](https://quarto.org/)`.
+
+<br>
+
+::: {.fragment}
+
+which gives:
+
+A link to the [Quarto documentation](https://quarto.org/).
+
+:::
+
+## Links
+
+If the text to appear and the URL should be the same, you can put it inside `<>` instead:
+
+... can be found at `<https://quarto.org>`.
+
+<br>
+
+::: {.fragment}
+
+which gives:
+
+... can be found at <https://quarto.org>.
+
+:::
 
 ## Including image files
 
-* include
-* image options align, cap
+Add an image using `![](path/image.png)`.
+
+::: {.fragment}
+
+::: {.callout-tip}
+
+* Use relative file paths rather than absolute file paths - other people won't share the same absolute file path as you!
+
+* File paths are relative to where the Quarto document is!
+
+* Use the **tab** key to show files.
+
+:::
+
+:::
+
+## Image options
+
+Add a figure caption in the square brackets:
+
+`![Figure caption goes here](path/image.png)`.
+
+<br>
+
+::: {.fragment}
+
+Image options can be added in curly brackets afterwards:
+
+`![Figure caption goes here](path/image.png){fig-align="center" width="50%"}`.
+
+
+:::
 
 ## Tables
 
-## Links
+You can create simple tables with Markdown syntax:
+
+::: columns
+
+::: {.column}
+
+```md
+| Surname | Forename |
+|---------|----------|
+| Rennie  | Nicola   |
+| Smith   | Jane     |
+| Barclay | Rebekah  |
+
+```
+
+:::
+
+::: {.column}
+
+| Surname | Forename |
+|---------|----------|
+| Rennie  | Nicola   |
+| Smith   | Jane     |
+| Barclay | Rebekah  |
+
+:::
+
+:::
+
+::: {.fragment}
+
+I almost never make tables by writing out `-` and `|`...
+
+:::
+
+## Tables
+
+::: {.incremental}
+
+* You can create nice-looking tables from data files e.g. .csv, .xlsx. We'll look at this in the next section.
+
+* The Visual Editor is much easier for writing tables.
+
+:::
+
+## Tables
+
+**Table** --> **Insert Tables**:
+
+![](images/tables1.png){fig-align="center" width="40%"}
+
+## Tables
+
+![](images/tables2.png){fig-align="center" width="80%"}
+
+## Writing equations with LaTeX
+
+````yaml
+---
+title: "A very cool title"
+format: html
+---
+
+\begin{equation}
+Y = \beta_0 + \beta_1 \text{age} + \beta_2 \text{education}
+\end{equation}
+
+````
+::: {.fragment}
+
+\begin{equation}
+Y = \beta_0 + \beta_1 \text{age} + \beta_2 \text{education}
+\end{equation}
+
+:::
 
 ## Live demo!
 
@@ -319,17 +548,25 @@ See `exercise_solutions/Exercise 2` for full solutions.
 2 + 2
 ```
 
+::: {.fragment}
+
 ::: {.callout-tip}
 
 Add a new code block using the **Ctrl + Shift + I** keyboard shortcut.
 
 :::
 
-## Code 
+:::
 
-- paths are relative
-- run code blocks one at a time
-- think about environments
+## Some Quarto code tips
+
+::: {.incremental}
+
+- Remember paths are relative - this includes data files!
+- You can run code blocks interactively, one at a time. These execute in your Global environment.
+- When you render a document, it runs in it's own environment. Objects in the Global environment cannot be accessed.
+
+:::
 
 ## Code block options
 
@@ -409,23 +646,18 @@ Code visibility options:
 
 ````
 
+## Predictive code block options (and YAML)
+
+<p style="text-align:center;">
+<img src="images/yaml.gif" alt="Gif of predictive yaml in a quarto document" width="50%">
+</p>
+
 ## Global code block options
 
 ::: {.fragment}
 
 ::: columns
 ::: {.column}
-
-**R Markdown**
-
-````
-```{{r}}
-knitr::opts_chunk$set(echo = FALSE)
-```
-````
-
-:::
-::: {.column .fragment}
 
 **Quarto**
 
@@ -439,15 +671,35 @@ execute:
 ```
 
 :::
+::: {.column .fragment}
+
+**R Markdown**
+
+````
+```{{r}}
+knitr::opts_chunk$set(echo = FALSE)
+```
+````
+
+:::
 :::
 
 :::
 
-## Code block options: label
+## Code block options: `label`
 
-* help to find where errors exist (unnumbered code block 39, Ctrl + F)
-* no duplicate labels
-* labels useful for other things (we'll see this afternoon)
+::: {.incremental}
+
+* You can add a `label` to each code block.
+* They are searchable and help to find where errors exist (compared to `unnumbered code block 39`).
+* You can't have duplicate labels.
+* Labels are also useful for other things (as we'll see this afternoon).
+
+:::
+
+## Code block options: `label`
+
+Let's say we want to load some data. We can add a `load-data` label:
 
 ```{r}
 #| label: load-data
@@ -455,11 +707,9 @@ library(psych)
 data(bfi)
 ```
 
-```{r}
-#| label: load-data-csv
-bfi <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/psych/bfi.csv")
-```
+<br>
 
+::: {.fragment}
 
 ::: {.callout-tip}
 
@@ -467,7 +717,20 @@ Separate label words using a `-` rather than a `_`.
 
 :::
 
-## Code block options: figures
+:::
+
+## Data
+
+We'll be using the `bfi` data from {psych} for some examples. You can also load the data directly from a CSV file:
+
+```{r}
+#| label: load-data-csv
+bfi <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/psych/bfi.csv")
+```
+
+See `?psych::bfi`.
+
+## Code block options: `fig-`
 
 Figure options:
 
@@ -481,7 +744,7 @@ Figure options:
 hist(bfi$age, xlab = "Age", main = "")
 ```
 
-## Code block options: tables
+## Code block options: `tbl-`
 
 There are lots of options for creating tables in R:
 
@@ -492,7 +755,7 @@ There are lots of options for creating tables in R:
 * {flextable} - good for Word documents
 * {tinytable} - very lightweight
 
-## Code block options: tables
+## Code block options: `tbl-`
 
 Prepare the data:
 
@@ -505,7 +768,7 @@ sat_summary <- aggregate(
 )
 ```
 
-## Code block options: tables
+## Code block options: `tbl-`
 
 Make a table:
 
@@ -515,7 +778,6 @@ Make a table:
 library(tinytable)
 tt(sat_summary)
 ```
-
 
 ## Live demo!
 
@@ -568,11 +830,19 @@ See `exercise_solutions/Exercise 3` for full solutions.
 
 We can also include code inline, rather than as a separate chunk.
 
+This is especially useful for using results values in a paragraph of text.
+
+::: {.fragment}
+
 ::: {.callout-note appearance="minimal"}
+
 The total number of participants is `` `r "\u0060r nrow(bfi)\u0060"` ``.
+
 :::
 
 The total number of participants is `r nrow(bfi)`.
+
+:::
 
 ## Referencing results in text
 
@@ -585,10 +855,14 @@ For more complex numbers, you can calculate or extract results from a code block
 age_f <- median(bfi[bfi$gender == 2, "age"])
 ```
 
+<br>
+
 ::: {.fragment}
 
 ::: {.callout-note appearance="minimal"}
+
 The median age of females in the study is `` `r "\u0060r age_f\u0060"` ``.
+
 :::
 
 The median age of females in the study is `r age_f`.
@@ -597,55 +871,157 @@ The median age of females in the study is `r age_f`.
 
 ## Figure references
 
-external images
+Earlier we saw how to add images to Quarto documents, where image options can be added in curly brackets afterwards:
+
+`![Figure caption goes here](path/image.png){fig-align="center" width="50%"}`.
+
+<br>
+
+::: {.fragment}
+
+Add a figure label with a `#`:
+
+`![Figure caption goes here](path/image.png){#fig-my-image fig-align="center" width="50%"}`.
+
+This label must start with `fig-` to be a *Figure* label.
+
+:::
 
 ## Figure references
+
+To reference the figure in the text, use an `@` with the figure label:
+
+`@fig-my-image`.
+
+<br>
+
+::: {.fragment}
+
+::: {.callout-tip}
+
+This is basically the pattern of cross-referencing throughout Quarto:
+
+* `#` give a reference label to an object.
+
+* `@` refer the object's reference in the text.
+
+:::
+
+:::
+
+## Cross-referencing
+
+We can add a cross-reference to a different section of our manuscript by adding a reference label that has a `sec-` prefix:
+
+```md
+## Exploratory data analysis {#sec-eda}
+```
+
+<br>
+
+::: {.fragment}
+
+Then we can make a reference to this section using:
+
+... as discussed in `@sec-eda`.
+
+This automatically adds the word `Section` before the relevant number.
+
+:::
+
+## Cross references
+
+To make sure that the cross reference numbers make sense, you should also switch on the numbering for the document sections:
+
+```yaml
+---
+title: "My Document"
+number-sections: true
+---
+```
+
+## Plot references
 
 Earlier we made a histogram of age:
 
 ```{r}
 #| label: age-histogram
 #| fig-align: center
-#| fig-width: 6
-#| fig-asp: 0.4
 #| fig-cap: "A histogram of participant age"
+#| output-location: column
 hist(bfi$age, xlab = "Age", main = "")
 ```
 
-## Figure references
+## Plot references
 
-To make this a **Figure** reference, we need to prefix the label with `fig-`:
+To make this a *Figure* reference, we need to prefix the label with `fig-`:
 
 ```{r}
 #| label: fig-age-histogram
 #| fig-align: center
-#| fig-width: 6
-#| fig-asp: 0.4
 #| fig-cap: "A histogram of participant age"
+#| output-location: column
 hist(bfi$age, xlab = "Age", main = "")
 ```
 
+## Plot references
+
 Then:
+
+A histogram of participant ages is shown in `@fig-age-histogram`.
+
+<br>
+
+::: {.fragment}
+
+gives:
 
 A histogram of participant ages is shown in @fig-age-histogram.
 
+:::
+
 ## Table references
 
-## Cross-referencing
+Table references are similar, except we prefix with `tbl-`:
 
-references within a document
+```{r}
+#| label: tbl-sat-summ
+#| tbl-cap: "Mean scores by education level"
+#| output-location: column
+tt(sat_summary)
+```
 
-## Citations
+## Table references
 
-## Option 1: using .bib files
+Then:
 
-::: {.callout-tip}
+Summary statistics are shown in `@tbl-sat-summ`.
 
-Find a citation for the R packages you using by running `citation("pkgname")` e.g. `citation("psych")`
+<br>
+
+::: {.fragment}
+
+gives:
+
+Summary statistics are shown in @tbl-sat-summ.
 
 :::
 
-## Create a .bib file
+## Citations
+
+To add citations in Quarto, we need two things:
+
+* A source bibliography with citation IDs
+
+* A way to refer citations IDs in Markdown syntax
+
+## Bibliography files
+
+* Quarto supports bibliographies in a wide variety of formats including BibTeX and CSL 
+
+* `.bib` files are probably most common.
+
+* The first entry inside the curly brackets is the citation ID.
 
 ```bib
 @Manual{psych,
@@ -659,9 +1035,71 @@ Find a citation for the R packages you using by running `citation("pkgname")` e.
 }
 ```
 
-## Option 2: Zotero
+::: {.fragment}
 
-## Other citation options
+::: {.callout-tip}
+
+Find a citation for the R packages you using by running `citation("pkgname")` e.g. `citation("psych")`
+
+:::
+
+:::
+
+## Bibliography files
+
+* Add a bibliography to your document using `bibliography` in the document YAML.
+
+* You might also choose to link the citations to the reference list.
+
+<br>
+
+```yaml
+---
+title: "Some long interesting title"
+bibliography: references.bib
+link-citations: true
+---
+```
+
+## Citations
+
+To refer to a citation, use `@` and the citation ID:
+
+... as described in `@psych.`
+
+<br>
+
+which gives:
+
+... as described in @psych.
+
+::: {.fragment}
+
+Or inside brackets:
+
+...as seen in the bfi data `[@psych].`
+
+which gives:
+
+...as seen in the bfi data [@psych].
+
+:::
+
+## Visual editor
+
+Adding citations is one task where the Visual Editor in RStudio can be really helpful. It provides:
+
+* Integration with Zotero (no set up if using desktop versions).
+
+* Search with DOI, CrossRef, PubMed.
+
+* It updates the `.bib` file for you!
+
+## Visual editor
+
+Click **Insert** --> **Citation**:
+
+![](images/citations.png){fig-align="center" width="80%"}
 
 ## Live demo!
 
@@ -709,44 +1147,218 @@ See `exercise_solutions/Exercise 4` for full solutions.
 
 # Formatting Quarto documents {background-color="#D9DBDB"}
 
-## Writing LaTeX
+## Formatting documents
 
-````
+Let's assume that we've written a wonderful, fully-reproducible manuscript and we're ready to submit it to our favourite journal. 
+
+::: {.fragment}
+
+Now comes the journal formatting...
+
+:::
+
+## Output formats
+
+Most (but not all)journals aren't quite ready for Quarto (`.qmd`) files. They accept Word documents, LaTeX files, and sometimes PDFs to start with.
+
+::: {.fragment}
+
+**Word documents**
+
+```yaml
+---
+format: docx
+---
+```
+
+:::
+
+::: {.fragment}
+
+**LaTeX**
+
+```yaml
+---
+format:
+  pdf:
+    keep-tex: true
+---
+```
+
+:::
+
+## Formatting documents
+
+How can you alter the styling of a Quarto document?
+
+::: {.fragment}
+
+::: columns
+
+::: {.column}
+
+**Word documents**
+
+```yaml
+---
+format:
+  docx:
+    reference-doc: apa-style.docx
+---
+```
+
+:::
+
+::: {.column}
+
+![](images/word-modify-styles.png){fig-align="center"}
+
+:::
+
+:::
+
+:::
+
+## Formatting documents
+
+**LaTeX**
+
+```yaml
+---
+format:
+  pdf:
+    keep-tex: true
+    template: apatemplate.tex
+---
+```
+
+::: {.fragment}
+
+The `template.tex` file might be provided by a journal. 
+
+But there's an easier way...
+
+:::
+
+## Quarto extensions
+
+Quarto extensions are a powerful way to modify and extend the behavior of Quarto. Extensions can be used to add styling to your documents.
+
+<br>
+
+::: {.fragment}
+
+Extensions aren't just used to change document styling. There are also extensions to:
+
+* Embed shinylive applications in a Quarto document
+* Embed HTML forms in documents
+* Use Font Awesome icons in HTML and PDF outputs
+* ...
+
+:::
+
+## Journal template extensions
+
+* Quarto extensions can be used to install templates for journal articles.
+
+* Many templates already exist (and the list is getting longer...)
+
+* See: [quarto.org/docs/extensions/listing-journals.html](https://quarto.org/docs/extensions/listing-journals.html)
+
+
+## Journal template extensions
+
+::: columns
+
+::: {.column}
+
+Submitting to the Journal of Statistical Software:
+
+``` yaml
 ---
 title: "A very cool title"
-format: html
+format:
+  pdf: default
+  jss-pdf:
+    keep-tex: true 
 ---
+```
 
-\begin{equation}
-\hat{e}_i = Y_i - \hat{Y}_i
-\end{equation}
+:::
 
-````
-. . .
+::: {.column .fragment}
 
-\begin{equation}
-\hat{e}_i = Y_i - \hat{Y}_i
-\end{equation}
+Submitting to an Elsevier journal:
 
-## extensions
+``` yaml
+---
+title: "A very cool title"
+format:
+  pdf: default
+  elsevier-pdf:
+    keep-tex: true 
+---
+```
 
-## journal templates
+:::
 
-[https://quarto.org/docs/extensions/listing-journals.html](https://quarto.org/docs/extensions/listing-journals.html)
+:::
 
-## apa
+## Installing Quarto extensions
 
-quarto::quarto_use_template("wjschne/apaquarto")
+* Quarto extensions can be shared in different ways.
+* The most common way is via GitHub.
+* This is where you'll find 
+* Two options for installing from GitHub:
+  * From the command line
+  * Using the {quarto} R package
+* Both ways download all the style files you need and put them in the right place.
 
-https://github.com/wjschne/apaquarto
+## Installing Quarto extensions
 
-https://wjschne.github.io/apaquarto/
+**From the command line**
 
-## output formats
+To create a new document from a template:
 
-keep-tex, word
+```md
+quarto use template username/repository
+```
 
-## Manuscript format
+<br>
+
+To convert an existing document
+
+```md
+quarto add username/repository
+```
+
+## Installing Quarto extensions
+
+**Using the {quarto} R package**
+
+> Version 1.4 onwards
+
+To create a new document from a template:
+
+```r
+quarto::quarto_use_template("username/repository")
+```
+
+<br>
+
+To convert an existing document
+
+```md
+quarto::quarto_add_extension("username/repository")
+```
+
+## APA style manuscripts
+
+APA Quarto extension: [wjschne.github.io/apaquarto](https://wjschne.github.io/apaquarto/)
+
+Install: `quarto::quarto_use_template("wjschne/apaquarto")`
+
+![](images/apa.png){fig-align="center" width="60%"}
 
 ## Live demo!
 
@@ -800,103 +1412,154 @@ We often work with other people when we write papers.
 
 How do we do that effectively using Quarto?
 
-## GitHub
+::: {.fragment}
 
-## {trackdown}
+::: {.callout-caution}
 
-## VSCode ive Share
+I don't have perfect answers to this...
 
-## Existing GH issue
+:::
+
+:::
+
+## Structuring Quarto documents
+
+* Your .qmd files will get excessively long when you start writing (especially when you include code).
+
+* This quickly gets annoying (especially with multiple people adding to a single document).
+
+* There are several options for breaking them down:
+
+  * multiple files
+  * multiple files in a project
+
+## Multiple Quarto files 
+
+You can use `{{< include doc.qmd >}}` to include one Quarto document in another.
+
+::: {.fragment}
+
+```md
+---
+title: "My manuscript"
+---
+
+## Introduction
+
+{{< include intro.qmd >}}
+
+## Exploratory data analysis
+
+{{< include analysis.qmd >}}
+```
+:::
+
+## Quarto projects: Manuscript
+
+::: {.incremental}
+
+* Quarto projects are a collection of Quarto files structured in a specific way that provide:
+  * A way to render all or some of the files in a directory.
+  * A way to share YAML configuration across multiple documents.
+  * The ability to freeze rendered output.
+
+* `Manuscripts` are a special type of Quarto project.
+
+* Has configuration file `_quarto.yml` that identifies the project as a Quarto manuscript and controls how your manuscript is put together.
+
+:::
+
+## Multiple authors: GitHub
+
+::: columns
+
+::: {.column}
+
+* A place to store and manage versions of code.
+
+* Public or private repositories
+
+* Alternatives like GitLab and Bitbucket exist.
+
+:::
+
+::: {.column}
+
+![](images/gh.png){fig-align="center"}
+
+:::
+
+:::
+
+## Multiple authors: GitHub
+
+Why use GitHub?
+
+* Easily roll back to previous versions.
+
+* History of who added what.
+
+* Add comments and suggestions via pull requests. Ask for a review. 
+
+* Can render your documents for you.
+
+## Multiple authors: {trackdown}
+
+![](images/trackdown.png){fig-align="center" width="80%"}
+
+See [claudiozandonella.github.io/trackdown](https://claudiozandonella.github.io/trackdown/).
+
+## Multiple authors: it's a known problem
+
+![](images/gh-issue.png){fig-align="center" width="80%"}
+
+GitHub discussion: [github.com/quarto-dev/quarto-cli/discussions/405](https://github.com/quarto-dev/quarto-cli/discussions/405)
+
+## Tricky things: managing versions
+
+When collaborating with other people, it's useful (sometimes crucial) that you all have:
+
+* the same R package versions ({renv} can help with this)
+* the same Quarto versions (harder to manage)
+* the same LaTeX versions (harder to manage)
+
+## Tricky things: long computations
+
+**Problem:** you have R code that takes a long time to run, and you don't want to re-run it every time you re-render the document:
+
+::: {.fragment}
+
+**Solutions**:
+
+* `cache: true`: store the results of cell executions so they aren’t re-executed with every document render.
+
+* `freeze: true`: in project, state that computational documents should never be re-rendered during a global project render, or alternatively only be re-rendered when their source file changes.
+
+* {targets}: a Make-like pipeline tool for statistics and data science in R
+  * skips costly runtime for tasks that are already up to date
+  * run computations upstream before the .qmd document
+  * the .qmd is the final "target"
+
+:::
+
 
 # Discussion {background-color="#D9DBDB"}
 
-## Examples of paper written in Quarto
+## Nice features: shortcodes
 
-## Nice features few of fav things
+::: {.incremental}
 
-## Tricky things
+* We've already seen the `include` shortcode. 
 
-## Quarto and R versions
+* There are other shortcodes to make your life easier. 
 
-* renv
-* nix
+* Adding `{{< pagebreak >}}` adds a page break in your document (as the name suggests).
 
-## {targets}
+* This works across multiple output formats.
 
-## Converting from R Markdown
-
-## Quarto extensions (e.g. journal article templates)
-
-Templates: [github.com/quarto-journals](https://github.com/quarto-journals)
-
-. . . 
-
-``` yaml
----
-title: "A very cool title"
-format:
-  pdf: default
-  jss-pdf:
-    keep-tex: true 
----
-```
-
-## Writing LaTeX
-
-````
----
-title: "A very cool title"
-format: html
----
-
-\begin{equation}
-\hat{e}_i = Y_i - \hat{Y}_i
-\end{equation}
-
-````
-. . .
-
-\begin{equation}
-\hat{e}_i = Y_i - \hat{Y}_i
-\end{equation}
-
-
-## Multiple columns
-
-````
-
-::: .columns
-::: {.column width = "60%"}
-The content for the first column goes here.
 :::
 
-::: {.column width = "40%"}
-The content for the second column goes here.
-:::
-:::
-
-
-````
-
-
-## Code animation {auto-animate="true"}
-
-```r
-g <- ggplot(data = lemurs, 
-            aes(x = name, y = n, fill = name)) +
-  geom_col()
-```
-
-## Code animation {auto-animate=true}
-
-```r
-g <- ggplot(data = lemurs, 
-            aes(x = name, y = n, fill = name)) +
-  geom_col() +
-  scale_fill_brewer(palette = "Dark2")
-```
-
-## Diagrams
+## Nice features: diagrams
 
 ````
 ```{dot}
@@ -913,7 +1576,7 @@ graph G {
 }
 ```
 ````
-## Diagrams
+## Nice features: diagrams
 
 ```{dot}
 //| fig-align: center
@@ -932,54 +1595,26 @@ graph G {
 }
 ```
 
-## Parameterised documents
+## Examples
 
-``` yaml
----
-title: "A very cool title"
-format: html
-params:
-  year: 2023
----
-```
-. . . 
+* [www.mm218.dev/papers/shrubland_pub_2022.pdf](https://www.mm218.dev/papers/shrubland_pub_2022.pdf)
 
-Subset data based on parameters:
+* [arxiv.org/pdf/2303.04758](https://arxiv.org/pdf/2303.04758)
+  * Source: [github.com/gesistsa/rang/tree/paper/paper](https://github.com/gesistsa/rang/tree/paper/paper)
 
-```{r}
-#| eval: false
-#| echo: true
-data_subset <- data |>
-  dplyr::filter(
-    year == params$year
-  )
-```
+* [arxiv.org/pdf/2303.07334](https://arxiv.org/pdf/2303.07334)
+  * Source: [github.com/cafri-labs/assessing-spatial-cv](https://github.com/cafri-labs/assessing-spatial-cv/)
+  * Uses {targets}
 
-## Parameterised documents
+## Open discussion
 
-```{r}
-#| eval: false
-#| echo: true
-quarto::quarto_render(
-  input = "document.qmd",
-  execute_params = list("year" = 2022)
-)
-```
+* Would you use Quarto to write a manuscript?
 
-. . . 
+* What things seem difficult or less nice than what you currently use?
 
-Map over multiple years with {purrr}:
+* Is there anything that didn't work the way you expected?
 
-```{r}
-#| eval: false
-#| echo: true
-purrr::walk(2018:2022, ~ quarto::quarto_render(
-  input = "document.qmd",
-  execute_params = list("year" = .x),
-  output_file = glue::glue("report_{.x}.html")
-))
-```
-
+* Questions?
 
 ## Useful links
 
