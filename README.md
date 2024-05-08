@@ -2,7 +2,11 @@
 
 Date: May 9, 2024
 
-Tutor: Nicola Rennie ([n.rennie@lancaster.ac.uk](mailto:n.rennie@lancaster.ac.uk))
+Tutor: Nicola Rennie
+
+GitHub: [github.com/nrennie/LU-psychology-quarto](https://github.com/nrennie/LU-psychology-quarto)
+
+Slides: [nrennie.github.io/LU-psychology-quarto](https://nrennie.github.io/LU-psychology-quarto)
 
 ## Session overview
 
