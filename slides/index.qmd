@@ -1570,7 +1570,7 @@ When collaborating with other people, it's useful (sometimes crucial) that you a
 
 * There are other shortcodes to make your life easier. 
 
-* Adding `{{< pagebreak >}}` adds a page break in your document (as the name suggests).
+* Adding {{{< pagebreak >}}} adds a page break in your document (as the name suggests).
 
 * This works across multiple output formats.
 
