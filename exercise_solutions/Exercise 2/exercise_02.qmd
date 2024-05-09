@@ -16,5 +16,10 @@ Three additional demographic variables are also included:
 * education
 * age
 
-![Eggs experiencing a variety of emotions](eggs.jpg){fig-align="center"}
+```{r}
+x <- 5
+x
+```
+
+![Eggs experiencing a variety of emotions](eggs.jpg){fig-align="center" width="50%"}
 
