@@ -1,0 +1,65 @@
+---
+title: "My document"
+format: apaquarto-html
+bibliography: references.bib
+number-sections: true
+number-depth: 2
+execute: 
+  echo: false
+---
+
+```{r}
+#| eval: true
+#| file: myscript.R
+```
+
+
+# Section heading 
+
+See @psych.
+
+## Exploratory data analysis {#sec-eda}
+
+Some text goes here. As seen in @sec-eda.
+
+### subsection
+
+A long list of objects: [@almeida2012]
+
+-   item 1
+-   item 2
+
+Link to slides: [is here](https://nrennie.rbind.io/LU-psychology-quarto/#/live-demo-1)
+
+Insert image:
+
+![Lemurs](lemurs.jpg){width="50%"}
+
+|     | Col1  | Col2 | Col3 |
+|-----|-------|------|------|
+|     | Item1 |      |      |
+|     |       |      |      |
+|     |       |      |      |
+
+```{r}
+#| tbl-cap: "Summary table"
+library(psych)
+library(tinytable)
+data("sat.act")
+sat_summary <- aggregate(
+  cbind(SATV, SATQ) ~ education,
+  FUN = mean,
+  data = sat.act
+)
+tt(sat_summary)
+```
+
+
+```{r}
+#| label: fig-scatter
+plot(1:10, 1:10)
+```
+
+As seen in @fig-scatter.
+
+
