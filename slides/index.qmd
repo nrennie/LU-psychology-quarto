@@ -1646,6 +1646,8 @@ graph G {
 
 * Awesome Quarto List: [github.com/mcanouil/awesome-quarto](https://github.com/mcanouil/awesome-quarto)
 
+* Zotero Connector (for source editor): [github.com/paleolimbot/rbbt](https://github.com/paleolimbot/rbbt)
+
 ## Workshop resources
 
 <br>
